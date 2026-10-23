@@ -155,8 +155,21 @@ AI 除錯三選一，先保存人工初版。以下是**教師設計的模擬 AI
 - [ ] Desktop 檢查差異，commit 描述修改目的，Push origin；到 GitHub 核對當日來源與紀錄。
 - [ ] 有家中副本，續作前 Fetch／Pull；CLI 選讀使用 `git pull --ff-only`，失敗先請教師診斷，不強制覆蓋。
 - [ ] 以不同本機路徑建立全新 clone，在 java-03 重編譯並跑 1、1、2；不可刪原副本。未完成者標示待驗證。
+最新 commit／遠端核對： 4f10cd7，已在 GitHub main 分支確認 115_10_16/java-03 內有 README.md、LAB_REPORT.md、AI_USAGE.md 與 src。
 
-最新 commit／遠端核對：待填。全新 clone 路徑、版本、指令、結果：待填。未完成事項：待填。推送失敗時保留完整 repo 到不受還原影響的位置、確認可讀並請教師協助，不直接關機。
+全新 clone 路徑： C:\Users\User\Documents\GitHub\115_1_Java_verify
+
+編譯目標版本： Java 21（使用 --release 21）
+
+編譯指令： javac --release 21 -encoding UTF-8 -d out src\*.java
+
+執行指令： java -cp out RoverMission
+
+測試輸入： 1、1、2
+
+實際結果： energy=6、samples=5、actionCount=3、battery=30.0，顯示 SUCCESS，符合預期。
+
+未完成事項： 無已知必要測試未完成；G 區為選做，未實作。
 
 ## G｜課後選做
 
