@@ -155,6 +155,7 @@ AI 除錯三選一，先保存人工初版。以下是**教師設計的模擬 AI
 - [ ] Desktop 檢查差異，commit 描述修改目的，Push origin；到 GitHub 核對當日來源與紀錄。
 - [ ] 有家中副本，續作前 Fetch／Pull；CLI 選讀使用 `git pull --ff-only`，失敗先請教師診斷，不強制覆蓋。
 - [ ] 以不同本機路徑建立全新 clone，在 java-03 重編譯並跑 1、1、2；不可刪原副本。未完成者標示待驗證。
+
 最新 commit／遠端核對： 4f10cd7，已在 GitHub main 分支確認 115_10_16/java-03 內有 README.md、LAB_REPORT.md、AI_USAGE.md 與 src。
 
 全新 clone 路徑： C:\Users\User\Documents\GitHub\115_1_Java_verify

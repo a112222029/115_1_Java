@@ -18,10 +18,10 @@ public class RoverMission {
             switch (command) {
                 case 1:
                     // TODO D1：足夠能源才扣 6、加 2 份樣本並計次；不足只提示。
-                     if (energy >= 6) {
+                    if (energy >= 6) {
                     energy -= 6;
                     samples += 2;
-                     actionCount++;
+                    actionCount++;
                     } else {
                     System.out.println("NOT_ENOUGH_ENERGY");
                     }
@@ -39,10 +39,13 @@ public class RoverMission {
                 case 3:
                     // TODO D3：未滿電才加 5，封頂 20；滿電不計次。
                     if (energy < 20) {
-                    energy = Math.min(energy + 5, 20);
+                    energy += 5;
+                    if (energy > 20) {
+                    energy = 20;
+                    }
                     actionCount++;
                     } else {
-                    System.out.println("BATTERY_FULL");
+                    System.out.println("ALREADY_FULL");
                     }
                     break;
                 case 0:
