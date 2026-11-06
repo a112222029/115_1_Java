@@ -267,9 +267,10 @@ battery=60.0
 - commit、push，核對 GitHub main 最新 commit 與來源檔。只 commit 或 Changes 空白不代表已推送。
 - 在另一位置 clone，同一專案重新編譯並跑 MissionLog；課堂不足可課後完成。
 
-GitHub repo：https://github.com/a112222029/115_1_Java
+GitHub repo/作業目錄：https://github.com/a112222029/115_1_Java；115_10_30/java-04
+最終 commit：1984284
 作業目錄：115_10_30/java-04
-本人新副本 JDK/編譯/預設輸出：尚未在新位置 Clone 驗證（待補）。目前原專案使用 OpenJDK 27（Temurin-27+35），已編譯成功，預設腳本 {1,1,2} 輸出 6/5/3 SUCCESS、battery=30.0。
+本人新副本 JDK/編譯/預設輸出：尚未在另一位置重新 Clone（待補）。原專案使用 OpenJDK 27（Temurin-27+35），編譯成功，預設腳本 {1,1,2} 執行結果為 6/5/3 SUCCESS，battery=30.0。
 推送若失敗先請教師協助，仍無法推送時保存完整 repo 至不會還原的位置，確認可讀並後續補推。
 
 ## 課後選做
