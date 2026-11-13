@@ -63,6 +63,9 @@ public class MissionLog {
                     break;
             }
             // TODO 2：把 command、energy、result 加到對應清單，拒絕與返回也要記錄。
+            commandLog.add(command);
+            energyLog.add(energy);
+            resultLog.add(result);
         }
 
         String outcome;
@@ -87,6 +90,11 @@ public class MissionLog {
     static int[] countCommands(ArrayList<Integer> commandLog) {
         int[] counts = new int[4];
         // TODO 1：走訪 commandLog；指令在 0..3 才增加 counts[command]。
+        for (int command : commandLog) {
+            if (command >= 0 && command <= 3) {
+                counts[command]++;
+            }
+        }
         return counts;
     }
 
@@ -94,14 +102,26 @@ public class MissionLog {
             ArrayList<String> resultLog) {
         System.out.println("=== replay ===");
         // TODO 3：用相同索引讀三條清單，格式見講義 E。
+        for (int i = 0; i < commandLog.size(); i++) {
+            System.out.println("Command: " + commandLog.get(i) + ", Energy: " + energyLog.get(i) + ", Result: " + resultLog.get(i));
+        }
     }
 
     static void printSummary(int scriptLength, ArrayList<Integer> energyLog,
             ArrayList<String> resultLog) {
         // TODO 4：用 frequency 計算 OK、RETURN，印出 steps、ok、rejected、ignored。
-        System.out.println("TODO 4: summary");
+        int ok = Collections.frequency(resultLog, "成功");
+        int returned = Collections.frequency(resultLog, "返回");
+        int steps = energyLog.size();
+        int rejected = steps - ok - returned;
+        int ignored = scriptLength - steps;
+        System.out.println("steps=" + steps + ", ok=" + ok + ", rejected=" + rejected + ", ignored=" + ignored);
         // TODO 5：先用 isEmpty 判斷；空清單印 N/A，否則用 min 印最小能源。
-        System.out.println("TODO 5: lowest energy");
+        if (energyLog.isEmpty()) {
+            System.out.println("最低能源 = 無紀錄");
+        } else {
+            System.out.println("最低能源 = " + Collections.min(energyLog));
+        }
     }
 
     static double calculateBatteryPercent(int energy) {

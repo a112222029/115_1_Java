@@ -1,0 +1,59 @@
+@startuml
+!pragma layout smetana
+skinparam classAttributeIconSize 0
+skinparam defaultFontName "Microsoft JhengHei"
+skinparam defaultFontSize 18
+skinparam shadowing false
+skinparam classBackgroundColor #F0F7FF
+skinparam classBorderColor #315A83
+skinparam noteBackgroundColor #FFF7DF
+skinparam noteBorderColor #937024
+skinparam nodesep 42
+skinparam ranksep 58
+hide circle
+hide empty fields
+
+title 第 5 週 Codex 教師版｜任務流程與單步日誌
+
+class MissionLog {
+  + {static} main(args : String[]) : void
+  ~ {static} runMission(script : int[], energy : int, samples : int) : void
+  ~ {static} countCommands(history : ArrayList<MissionStep>) : int[]
+  ~ {static} printReplay(history : ArrayList<MissionStep>) : void
+  ~ {static} printSummary(scriptLength : int, history : ArrayList<MissionStep>) : void
+  ~ {static} calculateBatteryPercent(energy : int) : double
+}
+
+note right of MissionLog
+  **執行任務、彙整日誌**
+  main 啟動固定指令腳本。
+  runMission 更新能源與樣本，判斷何時停止。
+  每讀一筆指令，就建立一筆 MissionStep，
+  存入該次執行的區域清單 history。
+  最後回放日誌、統計指令並輸出任務摘要。
+end note
+
+class MissionStep {
+  - command : int
+  - energy : int
+  - result : String
+  + MissionStep(command : int, energy : int, result : String)
+  + getCommand() : int
+  + getEnergy() : int
+  + getResult() : String
+  + isSuccessful() : boolean
+}
+
+note right of MissionStep
+  **保存一步的快照**
+  建構時保存指令、處理後的能源和結果代碼。
+  三個 getter 分別讀取這三項資料。
+  isSuccessful() 判斷這一步的結果是否為 OK。
+end note
+
+MissionLog ..> MissionStep : 建立並讀取
+
+legend bottom
+  + 公開　　- 私有　　~ 套件存取　　<u>底線</u> static　　虛線箭頭表示依賴
+endlegend
+@enduml

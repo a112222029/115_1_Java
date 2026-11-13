@@ -5,7 +5,7 @@ import java.util.Collections;
 // 同一任務規則，只新增逐筆保存；目前狀態維持具名變數，方便銜接第三週。
 public class MissionLog {
     public static void main(String[] args) {
-        int[] script = {3, 9, 0};// 探索 → 探索 → 掃描。
+        int[] script = {1, 1, 2}; // 探索 → 探索 → 掃描。
         runMission(script, 20, 0);
     }
 
@@ -91,9 +91,10 @@ public class MissionLog {
         int[] counts = new int[4];
         // TODO 1：走訪 commandLog；指令在 0..3 才增加 counts[command]。
         for (int command : commandLog) {
-        counts[command]++;
+            if (command >= 0 && command <counts.length) {
+                counts[command]++;
+            }
         }
-
         return counts;
     }
 
@@ -102,29 +103,25 @@ public class MissionLog {
         System.out.println("=== replay ===");
         // TODO 3：用相同索引讀三條清單，格式見講義 E。
         for (int i = 0; i < commandLog.size(); i++) {
-        System.out.println("step " + (i + 1)
-            + ": command=" + commandLog.get(i)
-            + ", result=" + resultLog.get(i)
-            + ", energy=" + energyLog.get(i));
-}
+            System.out.println("Command: " + commandLog.get(i) + ", Energy: " + energyLog.get(i) + ", Result: " + resultLog.get(i));
+        }
     }
 
     static void printSummary(int scriptLength, ArrayList<Integer> energyLog,
             ArrayList<String> resultLog) {
-        int steps = resultLog.size();
+        // TODO 4：用 frequency 計算 OK、RETURN，印出 steps、ok、rejected、ignored。
         int ok = Collections.frequency(resultLog, "OK");
         int returned = Collections.frequency(resultLog, "RETURN");
+        int steps = energyLog.size();
         int rejected = steps - ok - returned;
         int ignored = scriptLength - steps;
-
-System.out.println("steps=" + steps + ", ok=" + ok
-        + ", rejected=" + rejected + ", ignored=" + ignored);
-
+        System.out.println("steps=" + steps + ", ok=" + ok + ", rejected=" + rejected + ", ignored=" + ignored);
+        // TODO 5：先用 isEmpty 判斷；空清單印 N/A，否則用 min 印最小能源。
         if (energyLog.isEmpty()) {
-    System.out.println("lowest energy=N/A");
-    } else {
-    System.out.println("lowest energy=" + Collections.min(energyLog));
-    }
+            System.out.println("最低能源 = 無紀錄");
+        } else {
+            System.out.println("最低能源 = " + Collections.min(energyLog));
+        }
     }
 
     static double calculateBatteryPercent(int energy) {
